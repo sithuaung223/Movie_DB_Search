@@ -1,3 +1,0 @@
-STATUS: Get Movie Data!
-STATUS: Get Movie Info Data List from All Pages!
-STATUs: Get Movie ID List!

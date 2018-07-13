@@ -55,6 +55,23 @@ def ExtractGivenParameterList(infos_list, parameter):
 	return parameter_list
 
 
+def SearchCastsWithIDLists(category, id_list):
+	casts_set = set([]);
+
+	# Go through all movies
+	for Id in id_list:
+		url_credits  = "/3/%s/%d/credits?api_key=%s" % (category, Id, APIKEY)
+		credits_data = GetJsonDataWithUrl(url_credits)
+		if("cast" not in credits_data):
+			continue
+		casts_info_list = ExtractGivenParameterList(credits_data["cast"], "id")
+		casts_set.update(casts_info_list);
+	print("STATUS: Get All CAST from %s" % category)
+
+	print(category,"-Casts Lengths: ",len(casts_set))
+	return casts_set;
+
+
 def SearchMovieIDWithStartDateAndEndDate(start_date, end_date):
 
 	url_movie  = "/3/discover/movie?api_key=%s&primary_release_date.gte=%s&primary_release_date.lte=%s&sort_by=primary_release_date.asc" % (APIKEY, start_date, end_date)
@@ -71,24 +88,9 @@ def SearchMovieIDWithStartDateAndEndDate(start_date, end_date):
 	return movie_id_list;
 
 
-def SearchCastsWithIDLists(category, id_list):
-	casts_set = set([]);
-
-	# Go through all movies
-	for id in id_list:
-		url_credits  = "/3/%s/%d/credits?api_key=%s" % (category, id, APIKEY)
-		credits_data = GetJsonDataWithUrl(url_credits)
-		casts_info_list = ExtractGivenParameterList(credits_data["cast"], "id")
-		casts_set.update(casts_info_list);
-	print("STATUS: Get All CAST from %s" % category)
-
-	print(len(casts_set))
-	print(casts_set)
-	return casts_set;
-
 def SearchTvIDWithStartDateAndEndDate(start_date, end_date):
 
-	url_tv  = "/3/discover/tv?api_key=%s&primary_release_date.gte=%s&primary_release_date.lte=%s&sort_by=primary_release_date.asc" % (APIKEY, start_date, end_date)
+	url_tv  = "/3/discover/tv?api_key=%s&first_air_date.gte=%s&first_air_date.lte=%s&sort_by=primary_release_date.asc" % (APIKEY, start_date, end_date)
 
 	tv_data = GetJsonDataWithUrl(url_tv)
 	print("STATUS: Get TV Data!")
