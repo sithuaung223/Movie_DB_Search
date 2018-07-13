@@ -1,0 +1,11 @@
+STATUS: Get Movie Data!
+STATUS: Get Movie Info Data List from All Pages!
+STATUs: Get Movie ID List!
+STATUS: Get All CAST from movie
+movie -Casts Lengths:  5474
+STATUS: Get TV Data!
+STATUS: Get TV Info Data List from All Pages!
+STATUs: Get TV ID List!
+STATUS: Get All CAST from tv
+tv -Casts Lengths:  587
+Number of Actors and Actress who are in at least one movie and at least one tv episodes in December 2017 is 39
